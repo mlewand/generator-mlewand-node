@@ -13,6 +13,8 @@ module.exports = class extends Generator {
 			coveralls: false,
 			babel: false
 		} );
+
+		this.composeWith( require.resolve( './../vscodeDebugging' ) );
 	}
 
 	writing() {
