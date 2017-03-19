@@ -60,8 +60,6 @@ module.exports = class extends Generator {
 			}
 		} );
 
-		pkg.keywords = pkg.keywords || [];
-
 		this.fs.writeJSON( this.destinationPath( 'package.json' ), pkg );
 	}
 
