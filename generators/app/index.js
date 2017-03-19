@@ -4,6 +4,17 @@ const Generator = require( 'yeoman-generator' ),
 	extend = require( 'deep-extend' );
 
 module.exports = class extends Generator {
+	constructor( args, opts ) {
+		super( args, opts );
+
+		this.option( 'skipAppveyor', {
+			description: 'If set to true will skip AppVeyor config file.',
+			type: Boolean,
+			optional: true,
+			default: false
+		} );
+	}
+
 	default() {
 		this.composeWith( require.resolve( 'generator-node/generators/app' ), {
 			editorconfig: false,
@@ -15,6 +26,10 @@ module.exports = class extends Generator {
 		} );
 
 		this.composeWith( require.resolve( './../vscodeDebugging' ) );
+
+		if ( !this.options.skipAppveyor ) {
+			this.composeWith( require.resolve( 'generator-appveyor/generators/app' ) );
+		}
 	}
 
 	writing() {
